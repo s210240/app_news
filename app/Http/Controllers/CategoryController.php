@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Category;
+use App\Item;
 use Illuminate\Http\Request;
 
 class CategoryController extends Controller
@@ -14,8 +15,7 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        $data = Category::all();
-        return view('welcome', ['news' => $data]);
+
     }
 
     /**
@@ -47,7 +47,9 @@ class CategoryController extends Controller
      */
     public function show($id)
     {
-        //
+        $data = Item::where('category_id', $id)->paginate(10);
+
+        return view('category', ['news' => $data]);
     }
 
     /**
