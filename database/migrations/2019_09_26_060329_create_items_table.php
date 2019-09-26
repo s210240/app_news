@@ -13,17 +13,19 @@ class CreateItemsTable extends Migration
      */
     public function up()
     {
+        Schema::disableForeignKeyConstraints();
         Schema::create('items', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('header');
             $table->string('content');
-            $table->integer('id_category')->unsigned()->index();
+            $table->integer('category_id')->unsigned()->index();
+            $table->foreign('category_id')->references('id')->on('categories');
             $table->timestamps();
 
-            $table
-                ->foreign('id_category')
+            /*$table
+                ->foreign('category_id')
                 ->references('id')
-                ->on('categories');
+                ->on('categories');*/
         });
     }
 
@@ -34,6 +36,8 @@ class CreateItemsTable extends Migration
      */
     public function down()
     {
+        Schema::disableForeignKeyConstraints();
         Schema::dropIfExists('items');
+        Schema::enableForeignKeyConstraints();
     }
 }
