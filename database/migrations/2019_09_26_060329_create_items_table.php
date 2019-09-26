@@ -15,17 +15,13 @@ class CreateItemsTable extends Migration
     {
         Schema::disableForeignKeyConstraints();
         Schema::create('items', function (Blueprint $table) {
-            $table->bigIncrements('id');
+            $table->increments('id');
             $table->string('header');
             $table->string('content');
+            $table->integer('views')->default(0);
             $table->integer('category_id')->unsigned()->index();
             $table->foreign('category_id')->references('id')->on('categories');
             $table->timestamps();
-
-            /*$table
-                ->foreign('category_id')
-                ->references('id')
-                ->on('categories');*/
         });
     }
 
