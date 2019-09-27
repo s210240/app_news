@@ -35,10 +35,11 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <!-- Left Side Of Navbar -->
                 <ul class="navbar-nav mr-auto">
-                    <form class="form-inline">
+                    <form action="search" method="post" class="form-inline">
+                        @csrf
                         <div class="form-group mx-sm-3 mb-2">
-                            <label for="inputPassword2" class="sr-only">Search...</label>
-                            <input type="text" class="form-control" id="inputSearch" placeholder="Search...">
+                            <label for="searchString" class="sr-only">Search...</label>
+                            <input type="text" class="form-control" id="searchString" name="searchString" placeholder="Search...">
                         </div>
                         <button type="submit" class="btn btn-primary mb-2">Search</button>
                     </form>

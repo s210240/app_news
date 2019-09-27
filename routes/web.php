@@ -23,5 +23,6 @@ Route::get('/news/{id}', 'MainController@show');
 
 Route::get('/category/{id}', 'CategoryController@show');
 
-//Route::post('/subscribe', 'SubscribeController@store');
 Route::resource('/subscribe', 'SubscribeController');
+
+Route::post('/search', 'SearchController@index');
