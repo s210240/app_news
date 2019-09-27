@@ -1,7 +1,13 @@
-Install application
+### Install application
 
->composer install
+`composer install`
 
->npm install
+`php artisan key:generate`
 
->npm run dev
+`npm install`
+
+`npm run dev`
+
+`php artisan migrate`
+
+`php artisan db:seed`
