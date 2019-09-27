@@ -1,27 +1,24 @@
 <template>
     <div>
-        <button type="button" class="btn btn-primary" v-on:click="subNews()">Subscribe</button>
+        <button type="button" class="btn btn-primary" v-on:click="unsubNews()">UnSubscribe</button>
     </div>
 </template>
 
 <script>
     export default {
-        name: "PostComponent",
-
-        props: ['surveyData'],
+        name: "DeleteComponent",
+        props: ['deleteId'],
 
         mounted () {
-            console.dir(this.surveyData)
+            console.dir(this.deleteId)
         },
 
         methods: {
-            subNews() {
+            unsubNews() {
                 let self = this;
-                let id = self.surveyData;
-                if (confirm("Do you really want to subscribe it?")) {
-                    axios.post('/subscribe', {
-                        id: id
-                    })
+                let id = self.deleteId;
+                if (confirm("Do you really want to unsubscribe it?")) {
+                    axios.delete('/subscribe/' + id)
                         .then(function (response) {
                             console.log(response);
                             location.reload();
