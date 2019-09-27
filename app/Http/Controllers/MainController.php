@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use App\Item;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\DB;
 
 class MainController extends Controller
 {
@@ -46,6 +47,11 @@ class MainController extends Controller
         } else {
             $sub_id = 0;
         }
+
+        Item::where('id', $id)
+            ->update([
+                'views'=> DB::raw('views+1')
+            ]);
 
         return view('detail', ['news' => $data, 'sub_id' => $sub_id]);
     }
