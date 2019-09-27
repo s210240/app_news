@@ -20,4 +20,8 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/category', 'CategoryController@index');
 
 Route::get('/news/{id}', 'MainController@show');
+
 Route::get('/category/{id}', 'CategoryController@show');
+
+//Route::post('/subscribe', 'SubscribeController@store');
+Route::resource('/subscribe', 'SubscribeController');

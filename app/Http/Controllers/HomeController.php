@@ -3,6 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Subscribe;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Log;
+use App\Item;
 
 class HomeController extends Controller
 {
@@ -23,6 +27,13 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+        $data = [];
+        if (Auth::check()) {
+            $user_id = Auth::id();
+            $subs = Subscribe::where('user_id', $user_id)->pluck('category_id');
+            $data = Item::whereIn('category_id', $subs)->paginate(10);
+        }
+
+        return view('home', ['news' => $data]);
     }
 }

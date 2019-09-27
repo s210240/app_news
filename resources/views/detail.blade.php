@@ -8,11 +8,22 @@
                 <h6 class="card-subtitle mb-2 text-muted">{{$news->category->header}}</h6>
                 <p class="card-text">{{ $news->content}}</p>
                 @guest
-                    <a href="#" class="card-link">Subscribe this news category</a>
+                    <a href="#" class="card-link">Login for operation</a>
                 @else
-                    <a href="#" class="card-link">Unsubscribe this news category</a>
+                    @if ($sub_id == 0)
+                        <div id="app">
+                            <post-component :survey-data="'{!! json_encode($news->id) !!}'"></post-component>
+                        </div>
+                    @else
+                        <div id="app">
+                            <delete-component :delete-id="'{!! json_encode($sub_id) !!}'"></delete-component>
+                        </div>
+                    @endif
                 @endguest
+
+
             </div>
         </div>
     </div>
 @endsection
+
