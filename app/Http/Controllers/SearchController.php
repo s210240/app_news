@@ -12,7 +12,10 @@ class SearchController extends Controller
     {
         $searchString = $request->searchString;
 
-        $data = Item::with('category')->where('header', 'LIKE', '%' . $searchString . '%')->paginate(10);
+        $data = Item::with('category')
+            ->where('header', 'LIKE', '%' . $searchString . '%')
+            ->orWhere('content', 'LIKE', '%' . $searchString . '%')
+            ->paginate(10);
 
         return view('welcome', ['news' => $data]);
     }
