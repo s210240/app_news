@@ -15,6 +15,7 @@ class SearchController extends Controller
         $data = Item::with('category')
             ->where('header', 'LIKE', '%' . $searchString . '%')
             ->orWhere('content', 'LIKE', '%' . $searchString . '%')
+            ->orderBy('views', 'desc')
             ->paginate(10);
 
         return view('welcome', ['news' => $data]);

@@ -19,7 +19,7 @@ class MainController extends Controller
      */
     public function index()
     {
-        $data = Item::with('category')->paginate(10);
+        $data = Item::with('category')->orderBy('views', 'desc')->paginate(10);
 
         return view('welcome', ['news' => $data]);
     }

@@ -31,7 +31,7 @@ class HomeController extends Controller
         if (Auth::check()) {
             $user_id = Auth::id();
             $subs = Subscribe::where('user_id', $user_id)->pluck('category_id');
-            $data = Item::whereIn('category_id', $subs)->paginate(10);
+            $data = Item::whereIn('category_id', $subs)->orderBy('views', 'desc')->paginate(10);
         }
 
         return view('home', ['news' => $data]);

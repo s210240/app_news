@@ -47,7 +47,9 @@ class CategoryController extends Controller
      */
     public function show($id)
     {
-        $data = Item::where('category_id', $id)->paginate(10);
+        $data = Item::where('category_id', $id)
+            ->orderBy('views', 'desc')
+            ->paginate(10);
 
         return view('category', ['news' => $data]);
     }
