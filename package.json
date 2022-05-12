@@ -27,6 +27,7 @@
         "chokidar": "^3.5.3",
         "glob-parent": "^6.0.2",
         "postcss": "^8.3.6",
-        "watchpack": "^2.3.1"
+        "watchpack": "^2.3.1",
+        "webpack": "^5.72.1"
     }
 }
